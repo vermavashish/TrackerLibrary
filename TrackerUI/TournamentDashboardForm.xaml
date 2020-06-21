@@ -1,0 +1,50 @@
+﻿<Window x:Class="TrackerUI.TournamentDashboardForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrackerUI"
+        mc:Ignorable="d"
+        Title="Tournament Dashboard" Height="450" Width="600" Background="White" FontFamily="Cambria" FontSize="16">
+    <Window.Resources>
+        <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="{x:Type Button}">
+            <Border x:Name="border" 
+                    CornerRadius="10" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsDefaulted" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF3C7FB1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFC4E5F6"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF2C628B"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF838383"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+    </Window.Resources>
+    <Grid>
+        <Label Content="Tournament Dashboard" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Margin="146,80,0,0" Width="288" />
+        <Label Content="Load Existing Tournament" Foreground="Gray" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Margin="188,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.567"/>
+        <ComboBox x:Name ="existingTounamentDropDown" HorizontalAlignment="Left" Margin="158,190,0,0" VerticalAlignment="Top" Width="263" Background="White" BorderBrush="Gray" />
+        <Button x:Name="loadTournament" Content="Load Tournament" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="208,235,0,0" VerticalAlignment="Top" Template="{StaticResource RoundedButtonTemplate}" Width="164" Height="43"/>
+        <Button x:Name="createTournament" Content="Create Tournament" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="172,297,0,0" VerticalAlignment="Top" Template="{StaticResource RoundedButtonTemplate}" Width="234" Height="43"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,101 @@
+﻿<Window x:Class="TrackerUI.CreateTeamForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrackerUI"
+        mc:Ignorable="d"
+        Title="Create Team Form" Height="650" Width="800" Background="White" FontFamily="Cambria" FontSize="16">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="Textbox">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Foreground" Value="#000"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MinHeight" Value="10"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                            CornerRadius="10"
+                            BorderBrush="#000"
+                            BorderThickness="1"
+                            Background="#fff"
+>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                Focusable="false"
+                                HorizontalScrollBarVisibility="Hidden"
+                                VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                                <Setter Property="Foreground" Value="Red" />
+
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="Blue" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="Blue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="{x:Type Button}">
+            <Border x:Name="border" 
+                    CornerRadius="10" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsDefaulted" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF3C7FB1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFC4E5F6"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF2C628B"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF838383"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+    </Window.Resources>
+    <Grid>
+        <Label Content="Create Team" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Margin="20,0,0,0" Width="250" />
+        <Label Content="Teamt Name" Foreground="Gray" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Margin="26,50,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name ="teamNameValue" HorizontalAlignment="Left" Margin="26,84,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="267" Style="{StaticResource Textbox}"/>
+        <Label Content="Select Team Member" Foreground="Gray" FontWeight="SemiBold" FontStretch="Expanded" HorizontalAlignment="Left" Margin="29,136,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.567"/>
+        <ComboBox x:Name ="selectTeamMemberDropDown" HorizontalAlignment="Left" Margin="30,170,0,0" VerticalAlignment="Top" Width="263" Background="White" BorderBrush="Gray" />
+        <Button x:Name="addMemberButton" Content="Add Member" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="88,222,0,0" VerticalAlignment="Top" Template="{StaticResource RoundedButtonTemplate}" Width="124" Height="29"/>
+        <GroupBox Header="New Member" FontSize="18" FontWeight ="DemiBold" Margin="30,276,507,75"/>
+        <Label Content="First Name" Foreground="Black" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="37,308,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox x:Name ="firstNameTextBox" HorizontalAlignment="Left" Margin="127,308,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Style="{StaticResource Textbox}" Height="30"/>
+        <Label Content="Last Name" Foreground="Black" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="37,358,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label Content="Email" Foreground="Black" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="37,404,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label Content="Mobile" Foreground="Black" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="37,455,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox x:Name ="lastNameTextBox" HorizontalAlignment="Left" Margin="127,358,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Style="{StaticResource Textbox}" Height="30"/>
+        <TextBox x:Name ="emailValue" HorizontalAlignment="Left" Margin="127,404,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Style="{StaticResource Textbox}" Height="30"/>
+        <TextBox x:Name ="mobileValue" HorizontalAlignment="Left" Margin="127,453,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" Style="{StaticResource Textbox}" Height="30"/>
+        <Button x:Name="createMemberButton" Content="Create Member" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="88,510,0,0" VerticalAlignment="Top" Template="{StaticResource RoundedButtonTemplate}" Width="124" Height="29"/>
+        <ListBox Name ="teamMemberListBox" Margin="362,84,143,75"/>
+        <Button x:Name="deleteSelectedMember" Content="Delete Selected" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="666,0,0,0" VerticalAlignment="Center" Template="{StaticResource RoundedButtonTemplate}" Width="124" Height="29"/>
+        <Button x:Name="createTeamButton" Content="Add Team" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="267,579,0,0" VerticalAlignment="Top" Template="{StaticResource RoundedButtonTemplate}" Width="124" Height="29"/>
+    </Grid>
+</Window>
